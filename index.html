@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Tonight's Date, Decided By You</title>
+<meta name="description" content="Answer a few questions about your mood and get a personalized date idea." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="sky" id="sky" aria-hidden="true"></div>
+
+<div class="app">
+
+  <header class="app-header">
+    <p class="eyebrow">A LITTLE SURVEY, JUST FOR US</p>
+    <h1 class="title">Tonight's Date,<br>Decided By You</h1>
+  </header>
+
+  <main class="card-stage">
+
+    <!-- INTRO -->
+    <section id="intro" class="panel intro-panel is-active">
+      <div class="intro-card">
+        <span class="film-icon" aria-hidden="true">🎞️</span>
+        <p class="intro-copy">
+          Six quick questions about how you're feeling tonight.
+          No wrong answers &mdash; just honest ones. At the end,
+          you'll get a date idea picked just for your mood.
+        </p>
+        <button class="btn primary" id="startBtn">Let's begin</button>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="panel quiz-panel">
+
+      <div class="progress-strip" id="progressStrip" aria-hidden="true"></div>
+
+      <div class="question-card" id="questionCard">
+        <span class="q-count" id="qCount">Question 1 of 6</span>
+        <h2 class="q-text" id="qText"></h2>
+
+        <div class="dot-scale" id="dotScale" role="radiogroup" aria-label="Rate from 1 to 5"></div>
+
+        <div class="scale-labels">
+          <span id="lowLabel"></span>
+          <span id="highLabel"></span>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn ghost" id="backBtn">Back</button>
+        <button class="btn primary" id="nextBtn" disabled>Next</button>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section id="result" class="panel result-panel">
+      <div class="polaroid" id="polaroid">
+        <div class="polaroid-photo" id="polaroidPhoto">
+          <span id="resultEmoji">🌙</span>
+        </div>
+        <p class="polaroid-caption" id="resultTitle">Your date idea</p>
+      </div>
+
+      <p class="result-desc" id="resultDesc"></p>
+      <p class="result-tags" id="resultTags"></p>
+
+      <div class="result-buttons">
+        <button class="btn ghost" id="shuffleBtn">Show another idea</button>
+        <button class="btn primary" id="restartBtn">Retake the quiz</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">made with ♡ &mdash; customize this anytime in script.js</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
