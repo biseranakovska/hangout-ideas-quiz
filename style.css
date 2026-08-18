@@ -4,22 +4,28 @@
    references these variables, so a new palette or type pairing here
    ripples through the entire page.
    ========================================================================== */
+
+::selection {
+  color: var(--paper);
+  background-color: #754a5a90;
+}
+
 :root {
   /* --- Color: dusk sky + polaroid photograph ------------------------- */
-  --sky-top:      #171029;
-  --sky-bottom:   #3A2352;
-  --paper:        #FFF4E6;      /* polaroid / card paper */
-  --paper-edge:   #F3E4CC;
-  --ink:          #2C1B3B;      /* main dark text */
-  --ink-soft:     #6B5A78;      /* secondary text */
-  --rose:         #E8809A;      /* primary accent — warm rose */
-  --rose-deep:    #D45E80;
-  --gold:         #F0B860;      /* secondary accent — fairy-light gold */
-  --gold-soft:    #F7D9A0;
+  --sky-top: #1d1e2c;
+  --sky-bottom: #1d2646;
+  --paper: #fffbfb; /* polaroid / card paper */
+  --paper-edge: #f7ebec;
+  --ink: #643640; /* main dark text */
+  --ink-soft: #754a5a; /* secondary text */
+  --rose: #754a5a; /* primary accent — warm rose */
+  --rose-deep: #643640;
+  --gold: #c7e0d2; /* secondary accent — fairy-light gold */
+  --gold-soft: #eaf6ad;
 
   /* --- Type ------------------------------------------------------------ */
   --font-display: "Fraunces", Georgia, serif;
-  --font-body:    "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: Helvetica, sans-serif;
 
   /* --- Shape / motion ---------------------------------------------------*/
   --radius-lg: 28px;
@@ -31,16 +37,24 @@
 /* ==========================================================================
    Reset
    ========================================================================== */
-* { box-sizing: border-box; }
-html, body {
+* {
+  box-sizing: border-box;
+}
+html,
+body {
   margin: 0;
   padding: 0;
   min-height: 100%;
 }
 body {
   font-family: var(--font-body);
+  letter-spacing: 3%;
   color: var(--ink);
-  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--sky-top) 0%,
+    var(--sky-bottom) 100%
+  );
   min-height: 100svh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -48,9 +62,16 @@ body {
 button {
   font-family: inherit;
 }
-h1, h2, h3, p { margin: 0; }
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -68,15 +89,27 @@ h1, h2, h3, p { margin: 0; }
   overflow: hidden;
 }
 .star {
+  width: 10px !important;
+  height: 10px !important;
   position: absolute;
-  border-radius: 50%;
+  /* border-radius: 50%; */
+  clip-path: polygon(50% 0, 79% 90%, 2% 35%, 98% 35%, 21% 90%);
   background: var(--gold-soft);
   opacity: 0.55;
   animation: twinkle 4s ease-in-out infinite;
 }
 @keyframes twinkle {
-  0%, 100% { opacity: 0.15; transform: scale(0.85); }
-  50%      { opacity: 0.9;  transform: scale(1.1); }
+  0%,
+  100% {
+    opacity: 0.05;
+    transform: scale(0.85);
+    transform: rotate(180deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+    transform: rotate(0deg);
+  }
 }
 
 /* ==========================================================================
@@ -101,7 +134,7 @@ h1, h2, h3, p { margin: 0; }
   font-family: var(--font-body);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 2%;
   color: var(--gold);
   margin-bottom: 10px;
 }
@@ -138,8 +171,14 @@ h1, h2, h3, p { margin: 0; }
   animation: rise 0.5s var(--ease) both;
 }
 @keyframes rise {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
@@ -147,21 +186,30 @@ h1, h2, h3, p { margin: 0; }
    ========================================================================== */
 .intro-card {
   background: var(--paper);
-  border-radius: var(--radius-lg);
-  padding: 40px 28px 32px;
+  border-radius: var(--radius-sm);
+  padding: 40px 28px 28px;
   text-align: center;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .film-icon {
   font-size: 40px;
   display: inline-block;
   margin-bottom: 18px;
+  font-family: var(--font-display);
+  letter-spacing: 0;
 }
 .intro-copy {
   font-size: 15.5px;
   line-height: 1.6;
   color: var(--ink-soft);
   margin-bottom: 28px;
+
+  span {
+    font-style: italic;
+  }
 }
 
 /* ==========================================================================
@@ -171,20 +219,27 @@ h1, h2, h3, p { margin: 0; }
   appearance: none;
   border: none;
   cursor: pointer;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-body);
-  font-weight: 600;
+  letter-spacing: 2%;
+  font-weight: 500;
   font-size: 15px;
   padding: 15px 26px;
   min-height: 50px;
-  transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease), opacity 0.15s var(--ease);
+  transition:
+    transform 0.15s var(--ease),
+    box-shadow 0.15s var(--ease),
+    opacity 0.15s var(--ease);
 }
-.btn:active { transform: scale(0.97); }
+.btn:active {
+  transform: scale(0.97);
+}
 .btn.primary {
   background: linear-gradient(135deg, var(--rose) 0%, var(--rose-deep) 100%);
   color: #fff;
-  box-shadow: 0 10px 24px rgba(212, 94, 128, 0.35);
+  /* box-shadow: 0 10px 24px rgba(212, 94, 128, 0.35); */
   width: 100%;
+  letter-spacing: 2% !important;
 }
 .btn.primary:disabled {
   opacity: 0.4;
@@ -196,7 +251,9 @@ h1, h2, h3, p { margin: 0; }
   color: var(--paper);
   border: 1.5px solid rgba(255, 244, 230, 0.35);
 }
-.btn.ghost:hover { border-color: rgba(255, 244, 230, 0.7); }
+.btn.ghost:hover {
+  border-color: rgba(255, 244, 230, 0.7);
+}
 
 /* ==========================================================================
    Progress strip — film-sprocket motif
@@ -219,20 +276,24 @@ h1, h2, h3, p { margin: 0; }
   display: block;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--gold), var(--rose));
+  background: var(--gold);
   transition: width 0.4s var(--ease);
 }
-.progress-frame.filled::after { width: 100%; }
-.progress-frame.current::after { width: 100%; }
+.progress-frame.filled::after {
+  width: 100%;
+}
+.progress-frame.current::after {
+  width: 100%;
+}
 
 /* ==========================================================================
    Question card
    ========================================================================== */
 .question-card {
   background: var(--paper);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   padding: 30px 24px 26px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
   min-height: 260px;
 }
 .q-count {
@@ -267,8 +328,8 @@ h1, h2, h3, p { margin: 0; }
   aspect-ratio: 1 / 1;
   max-width: 54px;
   border-radius: 50%;
-  border: 2px solid var(--paper-edge);
-  background: #fff;
+  border: 2px solid #754a5a25;
+  background: transparent;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -280,13 +341,15 @@ h1, h2, h3, p { margin: 0; }
   transition: all 0.2s var(--ease);
   touch-action: manipulation;
 }
-.dot:hover { border-color: var(--rose); }
+.dot:hover {
+  border-color: var(--rose);
+}
 .dot.selected {
   background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
   border-color: transparent;
   color: #fff;
   transform: scale(1.12);
-  box-shadow: 0 8px 18px rgba(212, 94, 128, 0.4);
+  /* box-shadow: 0 8px 18px rgba(212, 94, 128, 0.4); */
 }
 
 .scale-labels {
@@ -296,21 +359,34 @@ h1, h2, h3, p { margin: 0; }
   color: var(--ink-soft);
   padding: 0 2px;
 }
-.scale-labels span:last-child { text-align: right; max-width: 45%; }
-.scale-labels span:first-child { max-width: 45%; }
+.scale-labels span:last-child {
+  text-align: right;
+  max-width: 45%;
+}
+.scale-labels span:first-child {
+  max-width: 45%;
+}
 
 .nav-buttons {
   display: flex;
   gap: 12px;
   margin-top: 20px;
 }
-.nav-buttons .btn.ghost { flex: 0 0 auto; padding-left: 20px; padding-right: 20px; }
-.nav-buttons .btn.primary { flex: 1; }
+.nav-buttons .btn.ghost {
+  flex: 0 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.nav-buttons .btn.primary {
+  flex: 1;
+}
 
 /* ==========================================================================
    Result — the "developing polaroid" signature moment
    ========================================================================== */
-.result-panel { text-align: center; }
+.result-panel {
+  text-align: center;
+}
 
 .polaroid {
   background: var(--paper);
@@ -318,18 +394,24 @@ h1, h2, h3, p { margin: 0; }
   padding: 16px 16px 22px;
   width: min(280px, 78vw);
   margin: 0 auto 22px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   transform: rotate(-2deg);
   animation: settle 0.6s var(--ease) both;
 }
 @keyframes settle {
-  from { opacity: 0; transform: rotate(-2deg) translateY(24px) scale(0.95); }
-  to   { opacity: 1; transform: rotate(-2deg) translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: rotate(-2deg) translateY(24px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-2deg) translateY(0) scale(1);
+  }
 }
 .polaroid-photo {
   aspect-ratio: 1 / 1;
   border-radius: 4px;
-  background: linear-gradient(160deg, #4A2E63 0%, #7A3E5D 55%, #E8809A 100%);
+  background: linear-gradient(160deg, #643640 0%, #754a5a 55%, #643640 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -339,7 +421,9 @@ h1, h2, h3, p { margin: 0; }
   overflow: hidden;
 }
 @keyframes develop {
-  to { filter: saturate(1) blur(0); }
+  to {
+    filter: saturate(1) blur(0);
+  }
 }
 .polaroid-caption {
   font-family: var(--font-display);
@@ -376,13 +460,23 @@ h1, h2, h3, p { margin: 0; }
    Small screens — extra breathing room fix, larger tap targets
    ========================================================================== */
 @media (max-width: 360px) {
-  .app { padding: 20px 14px 20px; }
-  .question-card { padding: 24px 16px 20px; }
-  .dot { font-size: 14px; }
+  .app {
+    padding: 20px 14px 20px;
+  }
+  .question-card {
+    padding: 24px 16px 20px;
+  }
+  .dot {
+    font-size: 14px;
+  }
 }
 
 /* Larger screens: let the app breathe without stretching edge to edge */
 @media (min-width: 640px) {
-  .app { padding-top: 48px; }
-  .title { font-size: 42px; }
+  .app {
+    padding-top: 48px;
+  }
+  .title {
+    font-size: 42px;
+  }
 }

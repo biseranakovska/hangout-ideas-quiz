@@ -15,39 +15,45 @@
 const QUESTIONS = [
   {
     axis: "energy",
-    text: "How much energy do you have tonight?",
-    low: "Barely enough to move",
-    high: "Ready to run around",
+    text: "Kolku energija imash?",
+    low: "Gazo ne mi se mrda",
+    high: "Mozhi i da trchame",
   },
   {
     axis: "environment",
-    text: "Indoors, or out under the sky?",
-    low: "Cozy indoors",
-    high: "Outside, always",
+    text: "Nadvor ili vnatre?",
+    low: "Vnatre, na toplo",
+    high: "Avanturist sum, nadvor",
   },
   {
-    axis: "romance",
-    text: "How romantic are you feeling?",
-    low: "Keep it light & fun",
-    high: "Full swoon mode",
+    axis: "car",
+    text: "Pesh ili so kola?",
+    low: "Mi trebat chekori",
+    high: "Najubo ti vozish ;)",
   },
   {
     axis: "budget",
-    text: "What's tonight's budget vibe?",
-    low: "Free or nearly free",
-    high: "Let's splurge a little",
+    text: "Budget?",
+    low: "Pivo is the best i can do",
+    high: "Imam stazh i mi se troshi",
   },
   {
     axis: "social",
-    text: "Just us, or out in the buzz?",
-    low: "Just the two of us",
-    high: "Out where it's lively",
+    text: "Socializing?",
+    low: "Not today",
+    high: "Kamarite level",
   },
   {
     axis: "novelty",
-    text: "Comfort favorite, or something new?",
-    low: "Our usual favorite",
-    high: "Something we've never done",
+    text: "Neshto standard ili neshto novo?",
+    low: "The usual",
+    high: "Rekov avanturist sum",
+  },
+  {
+    axis: "hunger",
+    text: "Kolku si gladna?",
+    low: "Full to the brim",
+    high: "Bi te lapnala",
   },
 ];
 
@@ -64,89 +70,258 @@ const QUESTIONS = [
    -------------------------------------------------------------------------- */
 const CATEGORIES = [
   {
-    name: "Cozy Night In",
+    name: "Site Doma",
     emoji: "🕯️",
-    ideal: { energy: 1, environment: 1, romance: 3, budget: 1, social: 1, novelty: 1 },
+    ideal: {
+      energy: 1,
+      environment: 1,
+      car: 1,
+      budget: 1,
+      social: 1,
+      novelty: 1,
+      hunger: 1,
+    },
     ideas: [
-      { title: "Blanket Fort Movie Marathon", desc: "Build a pillow fort, pick a mini film festival, and don't leave the couch until the credits roll on the last one." },
-      { title: "Cook a New Recipe Together", desc: "Pick a dish neither of you has made before, put on a playlist, and turn the kitchen into the date." },
-      { title: "Board Game & Snack Night", desc: "Dig out the games you never get around to, make a snack board, and let the competitive side out." },
-      { title: "Slow Morning-After Breakfast, Tonight", desc: "Make brinner — pancakes, eggs, all of it — and eat it by candlelight like it's the fanciest thing in the world." },
-    ],
-  },
-  {
-    name: "Comfort Classic",
-    emoji: "🥂",
-    ideal: { energy: 2, environment: 2, romance: 3, budget: 2, social: 2, novelty: 1 },
-    ideas: [
-      { title: "Revisit Your First Date Spot", desc: "Go back to wherever it all started, and notice what's changed since then — including you two." },
-      { title: "Order the Usual, Watch the Usual", desc: "Get takeout from your go-to place and rewatch the show or movie you always come back to." },
-      { title: "Recreate a Favorite Memory", desc: "Pick a date you both loved and do it again, on purpose, just because it was good the first time." },
+      {
+        title: "Minecraft Night",
+        desc: "Good ol' minecraft/or other game night",
+      },
     ],
   },
   {
     name: "Café & Chill",
     emoji: "☕",
-    ideal: { energy: 2, environment: 3, romance: 2, budget: 2, social: 2, novelty: 2 },
+    ideal: {
+      energy: 3,
+      environment: 2,
+      car: 1,
+      budget: 1,
+      social: 4,
+      novelty: 1,
+      hunger: 1,
+    },
     ideas: [
-      { title: "Café Hop for the Best Latte in Town", desc: "Pick two or three cafés you've been meaning to try and rate the drinks as you go." },
-      { title: "Bookstore Browsing + Coffee Date", desc: "Wander a bookstore, pick something for each other, then read the first chapter together over coffee." },
-      { title: "Bakery Crawl", desc: "Small portions from a few different bakeries beats one big dessert — turn it into a taste test." },
+      {
+        title: "Vezilka & Other",
+        desc: "Same old, same old. Vezilka, radost, porta jazz & similar. Tamu ti bara dushata",
+      },
     ],
   },
   {
-    name: "Romantic Dinner",
+    name: "Kakao",
+    emoji: "☕",
+    ideal: {
+      energy: 3,
+      environment: 5,
+      car: 2,
+      budget: 1,
+      social: 1,
+      novelty: 4,
+      hunger: 2,
+    },
+    ideas: [
+      {
+        title: "Good ol' Kakao",
+        desc: "Kakaoto go pram fenomenalno. + plazma",
+      },
+    ],
+  },
+  {
+    name: "Order-to-go",
+    emoji: "🍕",
+    ideal: {
+      energy: 4,
+      environment: 5,
+      car: 1,
+      budget: 2,
+      social: 1,
+      novelty: 1,
+      hunger: 4,
+    },
+    ideas: [
+      { title: "Pizza-to-go", desc: "Pizza? Ordered? Patot? Pod noze" },
+      {
+        title: "Hot Dog Tradition",
+        desc: "Tradition renewal posle  2 godini.",
+      },
+      {
+        title: "Sladoled",
+        desc: "Da te zapoznam so mojot omilen sladoled (od GT).",
+      },
+      {
+        title: "Mini Krofni (mmm)",
+        desc: "Mini krofni-to-go samo ovaj pat bez Jovana.",
+      },
+    ],
+  },
+  {
+    name: "Dinner",
     emoji: "🍷",
-    ideal: { energy: 2, environment: 2, romance: 5, budget: 4, social: 3, novelty: 3 },
+    ideal: {
+      energy: 3,
+      environment: 3,
+      car: 1,
+      budget: 5,
+      social: 3,
+      novelty: 5,
+      hunger: 5,
+    },
     ideas: [
-      { title: "Candlelit Dinner at Home", desc: "Dim the lights, put the phones away, and make the meal feel like an occasion, no reservation needed.", budget: 2, social: 1 },
-      { title: "Finally Book That Restaurant", desc: "The one you've both been saying 'we should go there' about for months — tonight's the night.", budget: 5, social: 3 },
-      { title: "Rooftop Dinner With a View", desc: "Find the best view in town and eat somewhere above the noise of the street.", budget: 4, social: 3 },
-      { title: "Wine & Cheese Tasting Night", desc: "A small spread, a few bottles to compare, and no rush to be anywhere else.", budget: 3, social: 2 },
+      {
+        title: "THE Il Baffo",
+        desc: "Tonights the night. Dushata ti bara za vo italijanskoto.",
+        budget: 5,
+        social: 3,
+      },
+      {
+        title: "Nov Restoran",
+        desc: "Odime negde kaj sho nemame dvete/dolgo ojdeno",
+      },
     ],
   },
   {
-    name: "Outdoor Adventure",
-    emoji: "🌲",
-    ideal: { energy: 5, environment: 5, romance: 2, budget: 3, social: 2, novelty: 4 },
-    ideas: [
-      { title: "Sunset Hike", desc: "Time a trail so you reach the top just as the sky starts to change color." },
-      { title: "Bike Ride to Somewhere New", desc: "Pick a destination neither of you has biked to before and make the ride part of the date." },
-      { title: "Kayaking or Paddleboarding", desc: "Get out on the water for an afternoon — it's harder to be distracted by your phone out there." },
-      { title: "Stargazing Picnic", desc: "Drive somewhere the city lights fade, bring blankets and snacks, and just look up for a while." },
-    ],
-  },
-  {
-    name: "City Buzz Night Out",
+    name: "Sucker za Kola",
     emoji: "🌆",
-    ideal: { energy: 4, environment: 4, romance: 2, budget: 4, social: 5, novelty: 3 },
+    ideal: {
+      energy: 2,
+      environment: 4,
+      car: 5,
+      budget: 1,
+      social: 1,
+      novelty: 4,
+      hunger: 1,
+    },
     ideas: [
-      { title: "Live Music or a Local Gig", desc: "Find whoever's playing nearby tonight and go, even if you've never heard of the act." },
-      { title: "Bar Hopping in a New Neighborhood", desc: "Pick a part of town you don't usually go to and let one drink lead to the next spot." },
-      { title: "Night Market or Street Food Crawl", desc: "Skip the sit-down meal — graze your way through a market instead." },
-      { title: "Dancing Somewhere New", desc: "Find a place with music you don't usually listen to and just move." },
+      {
+        title: "Novaci",
+        desc: "Been there done that, samo ovajpat podaleku",
+      },
+      {
+        title: "Rek",
+        desc: "Dolgo vreme nemame ojdeno, a nekoj denoj se bash za rek",
+      },
+      {
+        title: "Trip Without a Destination",
+        desc: "Samo ke vozime man, kaj sho ke ne odnesi patot",
+      },
     ],
   },
   {
-    name: "Spontaneous New Experience",
+    name: "Umetnichka Dusha",
     emoji: "🎨",
-    ideal: { energy: 3, environment: 3, romance: 3, budget: 3, social: 3, novelty: 5 },
+    ideal: {
+      energy: 5,
+      environment: 5,
+      car: 2,
+      budget: 1,
+      social: 2,
+      novelty: 5,
+      hunger: 1,
+    },
     ideas: [
-      { title: "Pottery or Paint Night", desc: "Sign up for a walk-in class and make something you'll both keep, badly or beautifully." },
-      { title: "Try a Cuisine You've Never Had", desc: "Pick a cuisine that's completely new to both of you and order enough to share everything." },
-      { title: "Take a Random Stop and Explore", desc: "Get on a bus or train, get off somewhere you've never been, and see what you find." },
-      { title: "Escape Room Challenge", desc: "An hour of solving things together under a countdown — good test of teamwork." },
+      {
+        title: "Color Hunting",
+        desc: "Odbirame boja i go fakjame patot. Color hunting so pobednik na krajot",
+      },
+      {
+        title: "Draw Each Other",
+        desc: "Nokjta e dolga, so crtanje i ta odma ke pomini",
+      },
     ],
   },
   {
-    name: "Playful & Fun",
-    emoji: "🎳",
-    ideal: { energy: 4, environment: 3, romance: 1, budget: 2, social: 3, novelty: 3 },
+    name: "Umetnichka Dusha",
+    emoji: "🎨",
+    ideal: {
+      energy: 3,
+      environment: 5,
+      car: 2,
+      budget: 1,
+      social: 2,
+      novelty: 5,
+      hunger: 1,
+    },
     ideas: [
-      { title: "Mini Golf Showdown", desc: "Loser buys ice cream. That's the whole rule and the whole point." },
-      { title: "Arcade Night", desc: "Rack up tickets, be way too competitive about it, and see who walks out with the better prize." },
-      { title: "Bowling Battle", desc: "Bad form encouraged. It's funnier that way." },
-      { title: "Trampoline or Amusement Park", desc: "Pick the most ridiculous ride or activity there and do it first." },
+      {
+        title: "Draw Each Other",
+        desc: "Nokjta e dolga, so crtanje i ta odma ke pomini",
+      },
+    ],
+  },
+  {
+    name: "(Smiren) Sucker za Kola",
+    emoji: "🎨",
+    ideal: {
+      energy: 1,
+      environment: 4,
+      car: 5,
+      budget: 1,
+      social: 1,
+      novelty: 5,
+      hunger: 1,
+    },
+    ideas: [
+      {
+        title: "Movie Night v Kola",
+        desc: "Running out of ideas, ova e the best i can do za tvojot picky-ass (/j). V kola so laptop ili telefon",
+      },
+    ],
+  },
+  {
+    name: "Fun & Games",
+    emoji: "🎳",
+    ideal: {
+      energy: 3,
+      environment: 4,
+      car: 1,
+      budget: 2,
+      social: 3,
+      novelty: 2,
+      hunger: 1,
+    },
+    ideas: [
+      {
+        title: "Billiard rematch",
+        desc: "The loser chasti (barem kifla). Iako damn well znajme koj ke pobedi",
+      },
+    ],
+  },
+  {
+    name: "Party",
+    emoji: "🎉",
+    ideal: {
+      energy: 4,
+      environment: 3,
+      car: 1,
+      budget: 3,
+      social: 5,
+      novelty: 2,
+      hunger: 1,
+    },
+    ideas: [
+      {
+        title: "Kamarite",
+        desc: "Ti se odi na zabava? Samo ako chastish ti",
+      },
+    ],
+  },
+  {
+    name: "Party",
+    emoji: "🎉",
+    ideal: {
+      energy: 4,
+      environment: 3,
+      car: 1,
+      budget: 3,
+      social: 5,
+      novelty: 2,
+      hunger: 1,
+    },
+    ideas: [
+      {
+        title: "Kamarite",
+        desc: "Ti se odi na zabava? Samo ako chastish ti",
+      },
     ],
   },
 ];
@@ -154,7 +329,7 @@ const CATEGORIES = [
 /* ==========================================================================
    State
    ========================================================================== */
-const answers = {};        // { axis: value }
+const answers = {}; // { axis: value }
 let currentIndex = 0;
 let matchedCategory = null;
 let sortedIdeas = [];
@@ -241,7 +416,7 @@ function updateProgressStrip() {
    ========================================================================== */
 function renderQuestion() {
   const q = QUESTIONS[currentIndex];
-  qCountEl.textContent = `Question ${currentIndex + 1} of ${QUESTIONS.length}`;
+  qCountEl.textContent = `Prashanje ${currentIndex + 1} od ${QUESTIONS.length}`;
   qTextEl.textContent = q.text;
   lowLabelEl.textContent = q.low;
   highLabelEl.textContent = q.high;
@@ -265,7 +440,8 @@ function renderQuestion() {
   }
 
   nextBtn.disabled = answers[q.axis] === undefined;
-  nextBtn.textContent = currentIndex === QUESTIONS.length - 1 ? "See my date idea" : "Next";
+  nextBtn.textContent =
+    currentIndex === QUESTIONS.length - 1 ? "See my date idea" : "Next";
   backBtn.style.visibility = currentIndex === 0 ? "hidden" : "visible";
 
   updateProgressStrip();
@@ -359,14 +535,20 @@ function computeResult() {
   // best individual fit, not just a random pick from the category.
   sortedIdeas = [...matchedCategory.ideas].sort((a, b) => {
     const da = axisDistance(
-      { budget: a.budget ?? matchedCategory.ideal.budget, social: a.social ?? matchedCategory.ideal.social },
+      {
+        budget: a.budget ?? matchedCategory.ideal.budget,
+        social: a.social ?? matchedCategory.ideal.social,
+      },
       { budget: answers.budget, social: answers.social },
-      ["budget", "social"]
+      ["budget", "social"],
     );
     const db = axisDistance(
-      { budget: b.budget ?? matchedCategory.ideal.budget, social: b.social ?? matchedCategory.ideal.social },
+      {
+        budget: b.budget ?? matchedCategory.ideal.budget,
+        social: b.social ?? matchedCategory.ideal.social,
+      },
       { budget: answers.budget, social: answers.social },
-      ["budget", "social"]
+      ["budget", "social"],
     );
     return da - db;
   });
