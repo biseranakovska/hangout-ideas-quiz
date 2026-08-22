@@ -467,10 +467,9 @@ startBtn.addEventListener("click", () => {
   renderQuestion();
 });
 
-backBtn.addEventListener("click", (e) => {
+backBtn.addEventListener("click", () => {
   if (currentIndex === 0) return;
   currentIndex--;
-  e.target.style.display = currentIndex === 0 ? "none" : "block";
   renderQuestion();
 });
 
